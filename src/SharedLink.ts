@@ -21,7 +21,12 @@ export class SharedLink extends ApolloLink {
       throw new Error('No inner link set')
     }
 
-    operation.setContext(operation.getContext().graphqlContext)
+    // operation.setContext(operation.getContext().graphqlContext)
+
+    operation.setContext({
+      ...operation.getContext(),
+      headers: { superHeader: 123 },
+    })
 
     console.log(
       'SharedLink.ts',

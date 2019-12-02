@@ -23,6 +23,21 @@ var __extends =
         b === null ? Object.create(b) : ((__.prototype = b.prototype), new __())
     }
   })()
+var __assign =
+  (this && this.__assign) ||
+  function() {
+    __assign =
+      Object.assign ||
+      function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+          s = arguments[i]
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p]
+        }
+        return t
+      }
+    return __assign.apply(this, arguments)
+  }
 Object.defineProperty(exports, '__esModule', { value: true })
 var apollo_link_1 = require('apollo-link')
 var SharedLink = /** @class */ (function(_super) {
@@ -37,7 +52,10 @@ var SharedLink = /** @class */ (function(_super) {
     if (!this.innerLink) {
       throw new Error('No inner link set')
     }
-    operation.setContext(operation.getContext().graphqlContext)
+    // operation.setContext(operation.getContext().graphqlContext)
+    operation.setContext(
+      __assign({}, operation.getContext(), { headers: { superHeader: 123 } }),
+    )
     console.log(
       'SharedLink.ts',
       'request',
