@@ -20,10 +20,14 @@ export class SharedLink extends ApolloLink {
     if (!this.innerLink) {
       throw new Error('No inner link set')
     }
-    
-    operation.setContext(operation.getContext().graphqlContext);
 
-    console.log('SharedLink.ts', 'request', operation.getContext());
+    operation.setContext(operation.getContext().graphqlContext)
+
+    console.log(
+      'SharedLink.ts',
+      'request',
+      JSON.stringify(operation.getContext()),
+    )
 
     return this.innerLink.request(operation, forward)
   }
