@@ -54,7 +54,10 @@ var SharedLink = /** @class */ (function(_super) {
     }
     // operation.setContext(operation.getContext().graphqlContext)
     operation.setContext(
-      __assign({}, operation.getContext(), { headers: { superHeader: 123 } }),
+      __assign({}, operation.getContext(), {
+        //headers: { superHeader: 123 },
+        headers: operation.getContext().graphqlContext.headers,
+      }),
     )
     console.log(
       'SharedLink.ts',

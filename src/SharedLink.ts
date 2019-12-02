@@ -25,7 +25,8 @@ export class SharedLink extends ApolloLink {
 
     operation.setContext({
       ...operation.getContext(),
-      headers: { superHeader: 123 },
+      //headers: { superHeader: 123 },
+      headers: operation.getContext().graphqlContext.headers,
     })
 
     console.log(
